@@ -17,376 +17,490 @@
 
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPOT1 = new System.Windows.Forms.TabPage();
-            this.tabPOT2 = new System.Windows.Forms.TabPage();
-            this.tabComparison = new System.Windows.Forms.TabPage();
-            this.panelPOT1Stats = new System.Windows.Forms.Panel();
-            this.lblPOT1Min = new System.Windows.Forms.Label();
-            this.lblPOT1Max = new System.Windows.Forms.Label();
-            this.lblPOT1Avg = new System.Windows.Forms.Label();
-            this.lblPOT1Count = new System.Windows.Forms.Label();
-            this.chartPOT1Line = new LiveCharts.WinForms.CartesianChart();
-            this.chartPOT1Pie = new LiveCharts.WinForms.PieChart();
-            this.gaugePOT1 = new LiveCharts.WinForms.SolidGauge();
-            this.panelPOT2Stats = new System.Windows.Forms.Panel();
-            this.lblPOT2Min = new System.Windows.Forms.Label();
-            this.lblPOT2Max = new System.Windows.Forms.Label();
-            this.lblPOT2Avg = new System.Windows.Forms.Label();
-            this.lblPOT2Count = new System.Windows.Forms.Label();
-            this.chartPOT2Line = new LiveCharts.WinForms.CartesianChart();
-            this.chartPOT2Pie = new LiveCharts.WinForms.PieChart();
-            this.gaugePOT2 = new LiveCharts.WinForms.SolidGauge();
-            this.chartComparison = new LiveCharts.WinForms.CartesianChart();
-            this.panelCompStats = new System.Windows.Forms.Panel();
-            this.lblCorrelation = new System.Windows.Forms.Label();
-            this.lblDifference = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPOT1.SuspendLayout();
-            this.tabPOT2.SuspendLayout();
-            this.tabComparison.SuspendLayout();
-            this.panelPOT1Stats.SuspendLayout();
-            this.panelPOT2Stats.SuspendLayout();
-            this.panelCompStats.SuspendLayout();
-            this.SuspendLayout();
+            panel1 = new Panel();
+            panelLeft = new Panel();
+            panelLeftBlue = new Panel();
+            panelLeftSky = new Panel();
+            panelLeftGreen = new Panel();
+            lblTitle = new Label();
+            btnRefresh = new Button();
+            btnClose = new Button();
+            tabControl1 = new TabControl();
+            tabPOT1 = new TabPage();
+            panelPOT1Stats = new Panel();
+            gaugePOT1Min = new LiveCharts.WinForms.SolidGauge();
+            gaugePOT1Max = new LiveCharts.WinForms.SolidGauge();
+            gaugePOT1Avg = new LiveCharts.WinForms.SolidGauge();
+            gaugePOT1Count = new LiveCharts.WinForms.SolidGauge();
+            lblPOT1MinTitle = new Label();
+            lblPOT1MaxTitle = new Label();
+            lblPOT1AvgTitle = new Label();
+            lblPOT1CountTitle = new Label();
+            chartPOT1Line = new LiveCharts.WinForms.CartesianChart();
+            chartPOT1Pie = new LiveCharts.WinForms.PieChart();
+            tabPOT2 = new TabPage();
+            panelPOT2Stats = new Panel();
+            gaugePOT2Min = new LiveCharts.WinForms.SolidGauge();
+            gaugePOT2Max = new LiveCharts.WinForms.SolidGauge();
+            gaugePOT2Avg = new LiveCharts.WinForms.SolidGauge();
+            gaugePOT2Count = new LiveCharts.WinForms.SolidGauge();
+            lblPOT2MinTitle = new Label();
+            lblPOT2MaxTitle = new Label();
+            lblPOT2AvgTitle = new Label();
+            lblPOT2CountTitle = new Label();
+            chartPOT2Line = new LiveCharts.WinForms.CartesianChart();
+            chartPOT2Pie = new LiveCharts.WinForms.PieChart();
+            tabComparison = new TabPage();
+            chartComparison = new LiveCharts.WinForms.CartesianChart();
+            panelCompStats = new Panel();
+            lblCorrelation = new Label();
+            lblDifference = new Label();
+            panel1.SuspendLayout();
+            panelLeft.SuspendLayout();
+            tabControl1.SuspendLayout();
+            tabPOT1.SuspendLayout();
+            panelPOT1Stats.SuspendLayout();
+            tabPOT2.SuspendLayout();
+            panelPOT2Stats.SuspendLayout();
+            tabComparison.SuspendLayout();
+            panelCompStats.SuspendLayout();
+            SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.panel1.Controls.Add(this.lblTitle);
-            this.panel1.Controls.Add(this.btnRefresh);
-            this.panel1.Controls.Add(this.btnClose);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1200, 60);
-            this.panel1.TabIndex = 0;
+            panel1.BackColor = Color.FromArgb(42, 65, 142);
+            panel1.Controls.Add(panelLeft);
+            panel1.Controls.Add(lblTitle);
+            panel1.Controls.Add(btnRefresh);
+            panel1.Controls.Add(btnClose);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1371, 80);
+            panel1.TabIndex = 0;
+            // 
+            // panelLeft
+            // 
+            panelLeft.Controls.Add(panelLeftBlue);
+            panelLeft.Controls.Add(panelLeftSky);
+            panelLeft.Controls.Add(panelLeftGreen);
+            panelLeft.Dock = DockStyle.Left;
+            panelLeft.Location = new Point(0, 0);
+            panelLeft.Name = "panelLeft";
+            panelLeft.Size = new Size(15, 80);
+            panelLeft.TabIndex = 3;
+            // 
+            // panelLeftBlue
+            // 
+            panelLeftBlue.BackColor = Color.FromArgb(30, 58, 138);
+            panelLeftBlue.Dock = DockStyle.Left;
+            panelLeftBlue.Location = new Point(10, 0);
+            panelLeftBlue.Name = "panelLeftBlue";
+            panelLeftBlue.Size = new Size(5, 80);
+            panelLeftBlue.TabIndex = 0;
+            // 
+            // panelLeftSky
+            // 
+            panelLeftSky.BackColor = Color.FromArgb(59, 130, 246);
+            panelLeftSky.Dock = DockStyle.Left;
+            panelLeftSky.Location = new Point(5, 0);
+            panelLeftSky.Name = "panelLeftSky";
+            panelLeftSky.Size = new Size(5, 80);
+            panelLeftSky.TabIndex = 1;
+            // 
+            // panelLeftGreen
+            // 
+            panelLeftGreen.BackColor = Color.FromArgb(16, 185, 129);
+            panelLeftGreen.Dock = DockStyle.Left;
+            panelLeftGreen.Location = new Point(0, 0);
+            panelLeftGreen.Name = "panelLeftGreen";
+            panelLeftGreen.Size = new Size(5, 80);
+            panelLeftGreen.TabIndex = 2;
             // 
             // lblTitle
             // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(12, 12);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(237, 32);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Statistical Analysis";
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(21, 22);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(329, 41);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "📊 Statistical Analysis";
             // 
             // btnRefresh
             // 
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(950, 12);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(110, 35);
-            this.btnRefresh.TabIndex = 1;
-            this.btnRefresh.Text = "🔄 Refresh";
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            btnRefresh.BackColor = Color.FromArgb(46, 204, 113);
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnRefresh.ForeColor = Color.White;
+            btnRefresh.Location = new Point(1086, 16);
+            btnRefresh.Margin = new Padding(3, 4, 3, 4);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(126, 47);
+            btnRefresh.TabIndex = 1;
+            btnRefresh.Text = "🔄 Refresh";
+            btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += btnRefresh_Click;
             // 
             // btnClose
             // 
-            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(1070, 12);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(110, 35);
-            this.btnClose.TabIndex = 2;
-            this.btnClose.Text = "✖ Close";
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            btnClose.BackColor = Color.FromArgb(231, 76, 60);
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnClose.ForeColor = Color.White;
+            btnClose.Location = new Point(1223, 16);
+            btnClose.Margin = new Padding(3, 4, 3, 4);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(126, 47);
+            btnClose.TabIndex = 2;
+            btnClose.Text = "✖ Close";
+            btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPOT1);
-            this.tabControl1.Controls.Add(this.tabPOT2);
-            this.tabControl1.Controls.Add(this.tabComparison);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.tabControl1.Location = new System.Drawing.Point(0, 60);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1200, 640);
-            this.tabControl1.TabIndex = 1;
+            tabControl1.Controls.Add(tabPOT1);
+            tabControl1.Controls.Add(tabPOT2);
+            tabControl1.Controls.Add(tabComparison);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Font = new Font("Segoe UI", 10F);
+            tabControl1.Location = new Point(0, 80);
+            tabControl1.Margin = new Padding(3, 4, 3, 4);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(1371, 853);
+            tabControl1.TabIndex = 1;
             // 
             // tabPOT1
             // 
-            this.tabPOT1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabPOT1.Controls.Add(this.panelPOT1Stats);
-            this.tabPOT1.Controls.Add(this.chartPOT1Line);
-            this.tabPOT1.Controls.Add(this.chartPOT1Pie);
-            this.tabPOT1.Controls.Add(this.gaugePOT1);
-            this.tabPOT1.Location = new System.Drawing.Point(4, 26);
-            this.tabPOT1.Name = "tabPOT1";
-            this.tabPOT1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPOT1.Size = new System.Drawing.Size(1192, 610);
-            this.tabPOT1.TabIndex = 0;
-            this.tabPOT1.Text = "📊 POT1 Analysis";
-            // 
-            // tabPOT2
-            // 
-            this.tabPOT2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabPOT2.Controls.Add(this.panelPOT2Stats);
-            this.tabPOT2.Controls.Add(this.chartPOT2Line);
-            this.tabPOT2.Controls.Add(this.chartPOT2Pie);
-            this.tabPOT2.Controls.Add(this.gaugePOT2);
-            this.tabPOT2.Location = new System.Drawing.Point(4, 26);
-            this.tabPOT2.Name = "tabPOT2";
-            this.tabPOT2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPOT2.Size = new System.Drawing.Size(1192, 610);
-            this.tabPOT2.TabIndex = 1;
-            this.tabPOT2.Text = "📊 POT2 Analysis";
-            // 
-            // tabComparison
-            // 
-            this.tabComparison.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabComparison.Controls.Add(this.chartComparison);
-            this.tabComparison.Controls.Add(this.panelCompStats);
-            this.tabComparison.Location = new System.Drawing.Point(4, 26);
-            this.tabComparison.Name = "tabComparison";
-            this.tabComparison.Size = new System.Drawing.Size(1192, 610);
-            this.tabComparison.TabIndex = 2;
-            this.tabComparison.Text = "⚖ Comparison";
+            tabPOT1.BackColor = Color.WhiteSmoke;
+            tabPOT1.Controls.Add(panelPOT1Stats);
+            tabPOT1.Controls.Add(chartPOT1Line);
+            tabPOT1.Controls.Add(chartPOT1Pie);
+            tabPOT1.Location = new Point(4, 32);
+            tabPOT1.Margin = new Padding(3, 4, 3, 4);
+            tabPOT1.Name = "tabPOT1";
+            tabPOT1.Padding = new Padding(3, 4, 3, 4);
+            tabPOT1.Size = new Size(1363, 817);
+            tabPOT1.TabIndex = 0;
+            tabPOT1.Text = "📊 POT1 Analysis";
             // 
             // panelPOT1Stats
             // 
-            this.panelPOT1Stats.BackColor = System.Drawing.Color.White;
-            this.panelPOT1Stats.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelPOT1Stats.Controls.Add(this.lblPOT1Min);
-            this.panelPOT1Stats.Controls.Add(this.lblPOT1Max);
-            this.panelPOT1Stats.Controls.Add(this.lblPOT1Avg);
-            this.panelPOT1Stats.Controls.Add(this.lblPOT1Count);
-            this.panelPOT1Stats.Location = new System.Drawing.Point(20, 20);
-            this.panelPOT1Stats.Name = "panelPOT1Stats";
-            this.panelPOT1Stats.Size = new System.Drawing.Size(700, 100);
-            this.panelPOT1Stats.TabIndex = 0;
+            panelPOT1Stats.BackColor = Color.White;
+            panelPOT1Stats.BorderStyle = BorderStyle.FixedSingle;
+            panelPOT1Stats.Controls.Add(gaugePOT1Min);
+            panelPOT1Stats.Controls.Add(gaugePOT1Max);
+            panelPOT1Stats.Controls.Add(gaugePOT1Avg);
+            panelPOT1Stats.Controls.Add(gaugePOT1Count);
+            panelPOT1Stats.Controls.Add(lblPOT1MinTitle);
+            panelPOT1Stats.Controls.Add(lblPOT1MaxTitle);
+            panelPOT1Stats.Controls.Add(lblPOT1AvgTitle);
+            panelPOT1Stats.Controls.Add(lblPOT1CountTitle);
+            panelPOT1Stats.Location = new Point(23, 27);
+            panelPOT1Stats.Margin = new Padding(3, 4, 3, 4);
+            panelPOT1Stats.Name = "panelPOT1Stats";
+            panelPOT1Stats.Size = new Size(1303, 239);
+            panelPOT1Stats.TabIndex = 0;
             // 
-            // lblPOT1Min
+            // gaugePOT1Min
             // 
-            this.lblPOT1Min.AutoSize = true;
-            this.lblPOT1Min.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPOT1Min.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.lblPOT1Min.Location = new System.Drawing.Point(15, 15);
-            this.lblPOT1Min.Name = "lblPOT1Min";
-            this.lblPOT1Min.Size = new System.Drawing.Size(79, 21);
-            this.lblPOT1Min.TabIndex = 0;
-            this.lblPOT1Min.Text = "Min: 0";
+            gaugePOT1Min.Location = new Point(46, 20);
+            gaugePOT1Min.Margin = new Padding(3, 4, 3, 4);
+            gaugePOT1Min.Name = "gaugePOT1Min";
+            gaugePOT1Min.Size = new Size(229, 160);
+            gaugePOT1Min.TabIndex = 0;
             // 
-            // lblPOT1Max
+            // gaugePOT1Max
             // 
-            this.lblPOT1Max.AutoSize = true;
-            this.lblPOT1Max.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPOT1Max.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
-            this.lblPOT1Max.Location = new System.Drawing.Point(190, 15);
-            this.lblPOT1Max.Name = "lblPOT1Max";
-            this.lblPOT1Max.Size = new System.Drawing.Size(82, 21);
-            this.lblPOT1Max.TabIndex = 1;
-            this.lblPOT1Max.Text = "Max: 0";
+            gaugePOT1Max.Location = new Point(354, 20);
+            gaugePOT1Max.Margin = new Padding(3, 4, 3, 4);
+            gaugePOT1Max.Name = "gaugePOT1Max";
+            gaugePOT1Max.Size = new Size(229, 160);
+            gaugePOT1Max.TabIndex = 1;
             // 
-            // lblPOT1Avg
+            // gaugePOT1Avg
             // 
-            this.lblPOT1Avg.AutoSize = true;
-            this.lblPOT1Avg.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPOT1Avg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.lblPOT1Avg.Location = new System.Drawing.Point(380, 15);
-            this.lblPOT1Avg.Name = "lblPOT1Avg";
-            this.lblPOT1Avg.Size = new System.Drawing.Size(113, 21);
-            this.lblPOT1Avg.TabIndex = 2;
-            this.lblPOT1Avg.Text = "Average: 0";
+            gaugePOT1Avg.Location = new Point(663, 20);
+            gaugePOT1Avg.Margin = new Padding(3, 4, 3, 4);
+            gaugePOT1Avg.Name = "gaugePOT1Avg";
+            gaugePOT1Avg.Size = new Size(229, 160);
+            gaugePOT1Avg.TabIndex = 2;
             // 
-            // lblPOT1Count
+            // gaugePOT1Count
             // 
-            this.lblPOT1Count.AutoSize = true;
-            this.lblPOT1Count.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPOT1Count.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(89)))), ((int)(((byte)(182)))));
-            this.lblPOT1Count.Location = new System.Drawing.Point(15, 55);
-            this.lblPOT1Count.Name = "lblPOT1Count";
-            this.lblPOT1Count.Size = new System.Drawing.Size(145, 21);
-            this.lblPOT1Count.TabIndex = 3;
-            this.lblPOT1Count.Text = "Total Records: 0";
+            gaugePOT1Count.Location = new Point(971, 20);
+            gaugePOT1Count.Margin = new Padding(3, 4, 3, 4);
+            gaugePOT1Count.Name = "gaugePOT1Count";
+            gaugePOT1Count.Size = new Size(229, 160);
+            gaugePOT1Count.TabIndex = 3;
+            // 
+            // lblPOT1MinTitle
+            // 
+            lblPOT1MinTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblPOT1MinTitle.ForeColor = Color.FromArgb(52, 152, 219);
+            lblPOT1MinTitle.Location = new Point(46, 187);
+            lblPOT1MinTitle.Name = "lblPOT1MinTitle";
+            lblPOT1MinTitle.Size = new Size(229, 33);
+            lblPOT1MinTitle.TabIndex = 4;
+            lblPOT1MinTitle.Text = "📉 Minimum";
+            lblPOT1MinTitle.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblPOT1MaxTitle
+            // 
+            lblPOT1MaxTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblPOT1MaxTitle.ForeColor = Color.FromArgb(231, 76, 60);
+            lblPOT1MaxTitle.Location = new Point(354, 187);
+            lblPOT1MaxTitle.Name = "lblPOT1MaxTitle";
+            lblPOT1MaxTitle.Size = new Size(229, 33);
+            lblPOT1MaxTitle.TabIndex = 5;
+            lblPOT1MaxTitle.Text = "📈 Maximum";
+            lblPOT1MaxTitle.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblPOT1AvgTitle
+            // 
+            lblPOT1AvgTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblPOT1AvgTitle.ForeColor = Color.FromArgb(46, 204, 113);
+            lblPOT1AvgTitle.Location = new Point(663, 187);
+            lblPOT1AvgTitle.Name = "lblPOT1AvgTitle";
+            lblPOT1AvgTitle.Size = new Size(229, 33);
+            lblPOT1AvgTitle.TabIndex = 6;
+            lblPOT1AvgTitle.Text = "📊 Average";
+            lblPOT1AvgTitle.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblPOT1CountTitle
+            // 
+            lblPOT1CountTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblPOT1CountTitle.ForeColor = Color.FromArgb(155, 89, 182);
+            lblPOT1CountTitle.Location = new Point(971, 187);
+            lblPOT1CountTitle.Name = "lblPOT1CountTitle";
+            lblPOT1CountTitle.Size = new Size(229, 33);
+            lblPOT1CountTitle.TabIndex = 7;
+            lblPOT1CountTitle.Text = "🔢 Total Records";
+            lblPOT1CountTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // chartPOT1Line
             // 
-            this.chartPOT1Line.Location = new System.Drawing.Point(20, 140);
-            this.chartPOT1Line.Name = "chartPOT1Line";
-            this.chartPOT1Line.Size = new System.Drawing.Size(700, 250);
-            this.chartPOT1Line.TabIndex = 1;
-            this.chartPOT1Line.Text = "POT1 Trend";
+            chartPOT1Line.Location = new Point(23, 293);
+            chartPOT1Line.Margin = new Padding(3, 4, 3, 4);
+            chartPOT1Line.Name = "chartPOT1Line";
+            chartPOT1Line.Size = new Size(800, 333);
+            chartPOT1Line.TabIndex = 1;
             // 
             // chartPOT1Pie
             // 
-            this.chartPOT1Pie.Location = new System.Drawing.Point(20, 410);
-            this.chartPOT1Pie.Name = "chartPOT1Pie";
-            this.chartPOT1Pie.Size = new System.Drawing.Size(450, 180);
-            this.chartPOT1Pie.TabIndex = 2;
-            this.chartPOT1Pie.Text = "POT1 Distribution";
+            chartPOT1Pie.Location = new Point(829, 293);
+            chartPOT1Pie.Margin = new Padding(3, 4, 3, 4);
+            chartPOT1Pie.Name = "chartPOT1Pie";
+            chartPOT1Pie.Size = new Size(514, 333);
+            chartPOT1Pie.TabIndex = 2;
             // 
-            // gaugePOT1
+            // tabPOT2
             // 
-            this.gaugePOT1.Location = new System.Drawing.Point(750, 20);
-            this.gaugePOT1.Name = "gaugePOT1";
-            this.gaugePOT1.Size = new System.Drawing.Size(400, 250);
-            this.gaugePOT1.TabIndex = 3;
-            this.gaugePOT1.Text = "POT1 Average";
+            tabPOT2.BackColor = Color.WhiteSmoke;
+            tabPOT2.Controls.Add(panelPOT2Stats);
+            tabPOT2.Controls.Add(chartPOT2Line);
+            tabPOT2.Controls.Add(chartPOT2Pie);
+            tabPOT2.Location = new Point(4, 32);
+            tabPOT2.Margin = new Padding(3, 4, 3, 4);
+            tabPOT2.Name = "tabPOT2";
+            tabPOT2.Padding = new Padding(3, 4, 3, 4);
+            tabPOT2.Size = new Size(1363, 817);
+            tabPOT2.TabIndex = 1;
+            tabPOT2.Text = "📊 POT2 Analysis";
             // 
             // panelPOT2Stats
             // 
-            this.panelPOT2Stats.BackColor = System.Drawing.Color.White;
-            this.panelPOT2Stats.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelPOT2Stats.Controls.Add(this.lblPOT2Min);
-            this.panelPOT2Stats.Controls.Add(this.lblPOT2Max);
-            this.panelPOT2Stats.Controls.Add(this.lblPOT2Avg);
-            this.panelPOT2Stats.Controls.Add(this.lblPOT2Count);
-            this.panelPOT2Stats.Location = new System.Drawing.Point(20, 20);
-            this.panelPOT2Stats.Name = "panelPOT2Stats";
-            this.panelPOT2Stats.Size = new System.Drawing.Size(700, 100);
-            this.panelPOT2Stats.TabIndex = 0;
+            panelPOT2Stats.BackColor = Color.White;
+            panelPOT2Stats.BorderStyle = BorderStyle.FixedSingle;
+            panelPOT2Stats.Controls.Add(gaugePOT2Min);
+            panelPOT2Stats.Controls.Add(gaugePOT2Max);
+            panelPOT2Stats.Controls.Add(gaugePOT2Avg);
+            panelPOT2Stats.Controls.Add(gaugePOT2Count);
+            panelPOT2Stats.Controls.Add(lblPOT2MinTitle);
+            panelPOT2Stats.Controls.Add(lblPOT2MaxTitle);
+            panelPOT2Stats.Controls.Add(lblPOT2AvgTitle);
+            panelPOT2Stats.Controls.Add(lblPOT2CountTitle);
+            panelPOT2Stats.Location = new Point(23, 27);
+            panelPOT2Stats.Margin = new Padding(3, 4, 3, 4);
+            panelPOT2Stats.Name = "panelPOT2Stats";
+            panelPOT2Stats.Size = new Size(1303, 239);
+            panelPOT2Stats.TabIndex = 0;
             // 
-            // lblPOT2Min
+            // gaugePOT2Min
             // 
-            this.lblPOT2Min.AutoSize = true;
-            this.lblPOT2Min.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPOT2Min.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.lblPOT2Min.Location = new System.Drawing.Point(15, 15);
-            this.lblPOT2Min.Name = "lblPOT2Min";
-            this.lblPOT2Min.Size = new System.Drawing.Size(79, 21);
-            this.lblPOT2Min.TabIndex = 0;
-            this.lblPOT2Min.Text = "Min: 0";
+            gaugePOT2Min.Location = new Point(46, 20);
+            gaugePOT2Min.Margin = new Padding(3, 4, 3, 4);
+            gaugePOT2Min.Name = "gaugePOT2Min";
+            gaugePOT2Min.Size = new Size(229, 160);
+            gaugePOT2Min.TabIndex = 0;
             // 
-            // lblPOT2Max
+            // gaugePOT2Max
             // 
-            this.lblPOT2Max.AutoSize = true;
-            this.lblPOT2Max.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPOT2Max.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
-            this.lblPOT2Max.Location = new System.Drawing.Point(190, 15);
-            this.lblPOT2Max.Name = "lblPOT2Max";
-            this.lblPOT2Max.Size = new System.Drawing.Size(82, 21);
-            this.lblPOT2Max.TabIndex = 1;
-            this.lblPOT2Max.Text = "Max: 0";
+            gaugePOT2Max.Location = new Point(354, 20);
+            gaugePOT2Max.Margin = new Padding(3, 4, 3, 4);
+            gaugePOT2Max.Name = "gaugePOT2Max";
+            gaugePOT2Max.Size = new Size(229, 160);
+            gaugePOT2Max.TabIndex = 1;
             // 
-            // lblPOT2Avg
+            // gaugePOT2Avg
             // 
-            this.lblPOT2Avg.AutoSize = true;
-            this.lblPOT2Avg.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPOT2Avg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.lblPOT2Avg.Location = new System.Drawing.Point(380, 15);
-            this.lblPOT2Avg.Name = "lblPOT2Avg";
-            this.lblPOT2Avg.Size = new System.Drawing.Size(113, 21);
-            this.lblPOT2Avg.TabIndex = 2;
-            this.lblPOT2Avg.Text = "Average: 0";
+            gaugePOT2Avg.Location = new Point(663, 20);
+            gaugePOT2Avg.Margin = new Padding(3, 4, 3, 4);
+            gaugePOT2Avg.Name = "gaugePOT2Avg";
+            gaugePOT2Avg.Size = new Size(229, 160);
+            gaugePOT2Avg.TabIndex = 2;
             // 
-            // lblPOT2Count
+            // gaugePOT2Count
             // 
-            this.lblPOT2Count.AutoSize = true;
-            this.lblPOT2Count.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPOT2Count.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(89)))), ((int)(((byte)(182)))));
-            this.lblPOT2Count.Location = new System.Drawing.Point(15, 55);
-            this.lblPOT2Count.Name = "lblPOT2Count";
-            this.lblPOT2Count.Size = new System.Drawing.Size(145, 21);
-            this.lblPOT2Count.TabIndex = 3;
-            this.lblPOT2Count.Text = "Total Records: 0";
+            gaugePOT2Count.Location = new Point(971, 20);
+            gaugePOT2Count.Margin = new Padding(3, 4, 3, 4);
+            gaugePOT2Count.Name = "gaugePOT2Count";
+            gaugePOT2Count.Size = new Size(229, 160);
+            gaugePOT2Count.TabIndex = 3;
+            // 
+            // lblPOT2MinTitle
+            // 
+            lblPOT2MinTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblPOT2MinTitle.ForeColor = Color.FromArgb(52, 152, 219);
+            lblPOT2MinTitle.Location = new Point(46, 187);
+            lblPOT2MinTitle.Name = "lblPOT2MinTitle";
+            lblPOT2MinTitle.Size = new Size(229, 33);
+            lblPOT2MinTitle.TabIndex = 4;
+            lblPOT2MinTitle.Text = "📉 Minimum";
+            lblPOT2MinTitle.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblPOT2MaxTitle
+            // 
+            lblPOT2MaxTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblPOT2MaxTitle.ForeColor = Color.FromArgb(231, 76, 60);
+            lblPOT2MaxTitle.Location = new Point(354, 187);
+            lblPOT2MaxTitle.Name = "lblPOT2MaxTitle";
+            lblPOT2MaxTitle.Size = new Size(229, 33);
+            lblPOT2MaxTitle.TabIndex = 5;
+            lblPOT2MaxTitle.Text = "📈 Maximum";
+            lblPOT2MaxTitle.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblPOT2AvgTitle
+            // 
+            lblPOT2AvgTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblPOT2AvgTitle.ForeColor = Color.FromArgb(46, 204, 113);
+            lblPOT2AvgTitle.Location = new Point(663, 187);
+            lblPOT2AvgTitle.Name = "lblPOT2AvgTitle";
+            lblPOT2AvgTitle.Size = new Size(229, 33);
+            lblPOT2AvgTitle.TabIndex = 6;
+            lblPOT2AvgTitle.Text = "📊 Average";
+            lblPOT2AvgTitle.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblPOT2CountTitle
+            // 
+            lblPOT2CountTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblPOT2CountTitle.ForeColor = Color.FromArgb(155, 89, 182);
+            lblPOT2CountTitle.Location = new Point(971, 187);
+            lblPOT2CountTitle.Name = "lblPOT2CountTitle";
+            lblPOT2CountTitle.Size = new Size(229, 33);
+            lblPOT2CountTitle.TabIndex = 7;
+            lblPOT2CountTitle.Text = "🔢 Total Records";
+            lblPOT2CountTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // chartPOT2Line
             // 
-            this.chartPOT2Line.Location = new System.Drawing.Point(20, 140);
-            this.chartPOT2Line.Name = "chartPOT2Line";
-            this.chartPOT2Line.Size = new System.Drawing.Size(700, 250);
-            this.chartPOT2Line.TabIndex = 1;
-            this.chartPOT2Line.Text = "POT2 Trend";
+            chartPOT2Line.Location = new Point(23, 293);
+            chartPOT2Line.Margin = new Padding(3, 4, 3, 4);
+            chartPOT2Line.Name = "chartPOT2Line";
+            chartPOT2Line.Size = new Size(800, 333);
+            chartPOT2Line.TabIndex = 1;
             // 
             // chartPOT2Pie
             // 
-            this.chartPOT2Pie.Location = new System.Drawing.Point(20, 410);
-            this.chartPOT2Pie.Name = "chartPOT2Pie";
-            this.chartPOT2Pie.Size = new System.Drawing.Size(450, 180);
-            this.chartPOT2Pie.TabIndex = 2;
-            this.chartPOT2Pie.Text = "POT2 Distribution";
+            chartPOT2Pie.Location = new Point(829, 293);
+            chartPOT2Pie.Margin = new Padding(3, 4, 3, 4);
+            chartPOT2Pie.Name = "chartPOT2Pie";
+            chartPOT2Pie.Size = new Size(514, 333);
+            chartPOT2Pie.TabIndex = 2;
             // 
-            // gaugePOT2
+            // tabComparison
             // 
-            this.gaugePOT2.Location = new System.Drawing.Point(750, 20);
-            this.gaugePOT2.Name = "gaugePOT2";
-            this.gaugePOT2.Size = new System.Drawing.Size(400, 250);
-            this.gaugePOT2.TabIndex = 3;
-            this.gaugePOT2.Text = "POT2 Average";
+            tabComparison.BackColor = Color.WhiteSmoke;
+            tabComparison.Controls.Add(chartComparison);
+            tabComparison.Controls.Add(panelCompStats);
+            tabComparison.Location = new Point(4, 32);
+            tabComparison.Margin = new Padding(3, 4, 3, 4);
+            tabComparison.Name = "tabComparison";
+            tabComparison.Size = new Size(1363, 817);
+            tabComparison.TabIndex = 2;
+            tabComparison.Text = "⚖ Comparison";
             // 
             // chartComparison
             // 
-            this.chartComparison.Location = new System.Drawing.Point(20, 140);
-            this.chartComparison.Name = "chartComparison";
-            this.chartComparison.Size = new System.Drawing.Size(1140, 450);
-            this.chartComparison.TabIndex = 0;
-            this.chartComparison.Text = "POT1 vs POT2 Comparison";
+            chartComparison.Location = new Point(23, 187);
+            chartComparison.Margin = new Padding(3, 4, 3, 4);
+            chartComparison.Name = "chartComparison";
+            chartComparison.Size = new Size(1303, 600);
+            chartComparison.TabIndex = 0;
             // 
             // panelCompStats
             // 
-            this.panelCompStats.BackColor = System.Drawing.Color.White;
-            this.panelCompStats.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelCompStats.Controls.Add(this.lblCorrelation);
-            this.panelCompStats.Controls.Add(this.lblDifference);
-            this.panelCompStats.Location = new System.Drawing.Point(20, 20);
-            this.panelCompStats.Name = "panelCompStats";
-            this.panelCompStats.Size = new System.Drawing.Size(1140, 100);
-            this.panelCompStats.TabIndex = 1;
+            panelCompStats.BackColor = Color.White;
+            panelCompStats.BorderStyle = BorderStyle.FixedSingle;
+            panelCompStats.Controls.Add(lblCorrelation);
+            panelCompStats.Controls.Add(lblDifference);
+            panelCompStats.Location = new Point(23, 27);
+            panelCompStats.Margin = new Padding(3, 4, 3, 4);
+            panelCompStats.Name = "panelCompStats";
+            panelCompStats.Size = new Size(1303, 133);
+            panelCompStats.TabIndex = 1;
             // 
             // lblCorrelation
             // 
-            this.lblCorrelation.AutoSize = true;
-            this.lblCorrelation.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblCorrelation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.lblCorrelation.Location = new System.Drawing.Point(20, 20);
-            this.lblCorrelation.Name = "lblCorrelation";
-            this.lblCorrelation.Size = new System.Drawing.Size(194, 25);
-            this.lblCorrelation.TabIndex = 0;
-            this.lblCorrelation.Text = "Correlation: N/A";
+            lblCorrelation.AutoSize = true;
+            lblCorrelation.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblCorrelation.ForeColor = Color.FromArgb(41, 128, 185);
+            lblCorrelation.Location = new Point(23, 27);
+            lblCorrelation.Name = "lblCorrelation";
+            lblCorrelation.Size = new Size(204, 32);
+            lblCorrelation.TabIndex = 0;
+            lblCorrelation.Text = "Correlation: N/A";
             // 
             // lblDifference
             // 
-            this.lblDifference.AutoSize = true;
-            this.lblDifference.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblDifference.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
-            this.lblDifference.Location = new System.Drawing.Point(20, 55);
-            this.lblDifference.Name = "lblDifference";
-            this.lblDifference.Size = new System.Drawing.Size(267, 25);
-            this.lblDifference.TabIndex = 1;
-            this.lblDifference.Text = "Average Difference: 0";
+            lblDifference.AutoSize = true;
+            lblDifference.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblDifference.ForeColor = Color.FromArgb(230, 126, 34);
+            lblDifference.Location = new Point(23, 73);
+            lblDifference.Name = "lblDifference";
+            lblDifference.Size = new Size(261, 32);
+            lblDifference.TabIndex = 1;
+            lblDifference.Text = "Average Difference: 0";
             // 
             // StatisticsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 700);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.Name = "StatisticsForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Statistical Analysis - Virtual Instrumentation";
-            this.Load += new System.EventHandler(this.StatisticsForm_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPOT1.ResumeLayout(false);
-            this.tabPOT2.ResumeLayout(false);
-            this.tabComparison.ResumeLayout(false);
-            this.panelPOT1Stats.ResumeLayout(false);
-            this.panelPOT1Stats.PerformLayout();
-            this.panelPOT2Stats.ResumeLayout(false);
-            this.panelPOT2Stats.PerformLayout();
-            this.panelCompStats.ResumeLayout(false);
-            this.panelCompStats.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1371, 933);
+            Controls.Add(tabControl1);
+            Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            Name = "StatisticsForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Statistical Analysis - Virtual Instrumentation";
+            Load += StatisticsForm_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panelLeft.ResumeLayout(false);
+            tabControl1.ResumeLayout(false);
+            tabPOT1.ResumeLayout(false);
+            panelPOT1Stats.ResumeLayout(false);
+            tabPOT2.ResumeLayout(false);
+            panelPOT2Stats.ResumeLayout(false);
+            tabComparison.ResumeLayout(false);
+            panelCompStats.ResumeLayout(false);
+            panelCompStats.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -399,25 +513,38 @@
         private System.Windows.Forms.TabPage tabPOT1;
         private System.Windows.Forms.TabPage tabPOT2;
         private System.Windows.Forms.TabPage tabComparison;
+
         private System.Windows.Forms.Panel panelPOT1Stats;
-        private System.Windows.Forms.Label lblPOT1Min;
-        private System.Windows.Forms.Label lblPOT1Max;
-        private System.Windows.Forms.Label lblPOT1Avg;
-        private System.Windows.Forms.Label lblPOT1Count;
+        private LiveCharts.WinForms.SolidGauge gaugePOT1Min;
+        private LiveCharts.WinForms.SolidGauge gaugePOT1Max;
+        private LiveCharts.WinForms.SolidGauge gaugePOT1Avg;
+        private LiveCharts.WinForms.SolidGauge gaugePOT1Count;
+        private System.Windows.Forms.Label lblPOT1MinTitle;
+        private System.Windows.Forms.Label lblPOT1MaxTitle;
+        private System.Windows.Forms.Label lblPOT1AvgTitle;
+        private System.Windows.Forms.Label lblPOT1CountTitle;
         private LiveCharts.WinForms.CartesianChart chartPOT1Line;
         private LiveCharts.WinForms.PieChart chartPOT1Pie;
-        private LiveCharts.WinForms.SolidGauge gaugePOT1;
+
         private System.Windows.Forms.Panel panelPOT2Stats;
-        private System.Windows.Forms.Label lblPOT2Min;
-        private System.Windows.Forms.Label lblPOT2Max;
-        private System.Windows.Forms.Label lblPOT2Avg;
-        private System.Windows.Forms.Label lblPOT2Count;
+        private LiveCharts.WinForms.SolidGauge gaugePOT2Min;
+        private LiveCharts.WinForms.SolidGauge gaugePOT2Max;
+        private LiveCharts.WinForms.SolidGauge gaugePOT2Avg;
+        private LiveCharts.WinForms.SolidGauge gaugePOT2Count;
+        private System.Windows.Forms.Label lblPOT2MinTitle;
+        private System.Windows.Forms.Label lblPOT2MaxTitle;
+        private System.Windows.Forms.Label lblPOT2AvgTitle;
+        private System.Windows.Forms.Label lblPOT2CountTitle;
         private LiveCharts.WinForms.CartesianChart chartPOT2Line;
         private LiveCharts.WinForms.PieChart chartPOT2Pie;
-        private LiveCharts.WinForms.SolidGauge gaugePOT2;
+
         private LiveCharts.WinForms.CartesianChart chartComparison;
         private System.Windows.Forms.Panel panelCompStats;
         private System.Windows.Forms.Label lblCorrelation;
         private System.Windows.Forms.Label lblDifference;
+        private Panel panelLeft;
+        private Panel panelLeftBlue;
+        private Panel panelLeftSky;
+        private Panel panelLeftGreen;
     }
 }

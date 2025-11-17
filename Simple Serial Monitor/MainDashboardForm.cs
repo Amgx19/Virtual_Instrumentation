@@ -1,5 +1,4 @@
-﻿using LiveCharts.WinForms;
-using LiveCharts;
+﻿using LiveCharts;
 using LiveCharts.Wpf;
 using Microsoft.Data.Sqlite;
 using System;
@@ -8,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Simple_Serial_Monitor
 {
-    public partial class Form1 : Form
+    public partial class MainDashboardForm : Form
     {
         SerialPort serialPort = new SerialPort();
         string latestData = "";
@@ -23,7 +22,7 @@ namespace Simple_Serial_Monitor
         private int dbCounter = 0;
         private int chart2Counter = 0;
 
-        public Form1()
+        public MainDashboardForm()
         {
             InitializeComponent();
             InitDatabase();
@@ -58,24 +57,31 @@ namespace Simple_Serial_Monitor
             serialPort.DataReceived += SerialPort_DataReceived;
 
             System.Windows.Forms.Timer uiTimer = new System.Windows.Forms.Timer();
-            uiTimer.Interval = 1000; // كل ثانية
+            uiTimer.Interval = 1000;
             uiTimer.Tick += UiTimer_Tick;
             uiTimer.Start();
 
             solidGauge1.Value = 0;
             solidGauge1.To = 1023;
+            solidGauge1.FromColor = System.Windows.Media.Color.FromRgb(42, 65, 142);
+            solidGauge1.ToColor = System.Windows.Media.Color.FromRgb(149, 194, 65);
+
             solidGauge2.Value = 0;
             solidGauge2.To = 1023;
+            solidGauge2.FromColor = System.Windows.Media.Color.FromRgb(42, 65, 142);
+            solidGauge2.ToColor = System.Windows.Media.Color.FromRgb(149, 194, 65);
 
-            SimulationMode = false; // تبدأ بالمحاكاة
+            SimulationMode = false;
             btnSimulation.Text = "Start Simulation";
+
+            textBox2.Text = "POT1: 0 | POT2: 0";
         }
 
         private void open_btn(object sender, EventArgs e)
         {
             if (SimulationMode)
             {
-                MessageBox.Show("Simulation Mode Active - No COM Port Opened");
+                MessageBox.Show("⚠ Simulation Mode Active - No COM Port Opened", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -89,11 +95,11 @@ namespace Simple_Serial_Monitor
                 serialPort.NewLine = "\n";
 
                 serialPort.Open();
-                MessageBox.Show("Connected to " + comboBox1.Text);
+                MessageBox.Show($"✅ Connected to {comboBox1.Text}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show($"❌ Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -101,7 +107,7 @@ namespace Simple_Serial_Monitor
         {
             if (SimulationMode)
             {
-                MessageBox.Show("Simulation Mode Active - No COM Port To Close");
+                MessageBox.Show("⚠ Simulation Mode Active - No COM Port To Close", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -110,17 +116,17 @@ namespace Simple_Serial_Monitor
                 if (serialPort.IsOpen)
                 {
                     serialPort.Close();
-                    latestData = "";   // 🟢 تنظيف آخر قراءة عند الإغلاق
-                    MessageBox.Show("Connection Closed");
+                    latestData = "";
+                    MessageBox.Show("✅ Connection Closed", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Port is already closed");
+                    MessageBox.Show("⚠ Port is already closed", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show($"❌ Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -138,7 +144,7 @@ namespace Simple_Serial_Monitor
         {
             if (!SimulationMode && !serialPort.IsOpen)
             {
-                return; // 🟢 لا تكمل لو البورت مغلق
+                return;
             }
 
             int val1, val2;
@@ -160,13 +166,13 @@ namespace Simple_Serial_Monitor
                 }
                 else
                 {
-                    return; // لا يوجد بيانات جديدة
+                    return;
                 }
             }
 
-            // 🟢 تحديث الشارت ببطء (مرة كل 2 ثانية)
+            // تحديث الشارت ببطء
             chart2Counter++;
-            if (chart2Counter >= 2) // كل ثانيتين
+            if (chart2Counter >= 2)
             {
                 chartValues1.Add(val1);
                 if (chartValues1.Count > 30) chartValues1.RemoveAt(0);
@@ -174,25 +180,51 @@ namespace Simple_Serial_Monitor
                 chartValues2.Add(val2);
                 if (chartValues2.Count > 30) chartValues2.RemoveAt(0);
 
+                // تنظيف المحاور
+                cartesianChart1.AxisX.Clear();
+                cartesianChart1.AxisY.Clear();
+
                 cartesianChart1.Series = new SeriesCollection
-        {
-            new LiveCharts.Wpf.LineSeries { Title = "POT1", Values = chartValues1 }
-        };
+                {
+                    new LineSeries
+                    {
+                        Title = "POT1",
+                        Values = chartValues1,
+                        Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(42, 65, 142)),
+                        Fill = System.Windows.Media.Brushes.Transparent,
+                        StrokeThickness = 2
+                    }
+                };
+
+                cartesianChart1.AxisY.Add(new Axis { MinValue = 0, MaxValue = 1023 });
+
+                // تنظيف المحاور
+                cartesianChart2.AxisX.Clear();
+                cartesianChart2.AxisY.Clear();
 
                 cartesianChart2.Series = new SeriesCollection
-        {
-            new LiveCharts.Wpf.LineSeries { Title = "POT2", Values = chartValues2 }
-        };
+                {
+                    new LineSeries
+                    {
+                        Title = "POT2",
+                        Values = chartValues2,
+                        Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(149, 194, 65)),
+                        Fill = System.Windows.Media.Brushes.Transparent,
+                        StrokeThickness = 2
+                    }
+                };
+
+                cartesianChart2.AxisY.Add(new Axis { MinValue = 0, MaxValue = 1023 });
 
                 chart2Counter = 0;
             }
 
-            // تحديث الواجهة (عدادات)
+            // تحديث الواجهة
             textBox2.Text = $"POT1: {val1} | POT2: {val2}";
             solidGauge1.Value = val1;
             solidGauge2.Value = val2;
 
-            // 🟢 تخزين في الداتابيس ببطء (مرة كل 3 ثواني)
+            // تخزين في الداتابيس
             dbCounter++;
             if (dbCounter >= 3)
             {
@@ -241,39 +273,58 @@ namespace Simple_Serial_Monitor
             if (SimulationMode)
             {
                 btnSimulation.Text = "Stop Simulation";
-                MessageBox.Show("Simulation Mode Enabled ✅");
+                btnSimulation.BackColor = System.Drawing.Color.FromArgb(239, 68, 68);
+                MessageBox.Show("✅ Simulation Mode Enabled", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 btnSimulation.Text = "Start Simulation";
-                MessageBox.Show("Simulation Mode Disabled ❌ - Real Data Mode");
+                btnSimulation.BackColor = System.Drawing.Color.FromArgb(42, 65, 142);
+                MessageBox.Show("❌ Simulation Mode Disabled - Real Data Mode", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void btnClearData_Click(object sender, EventArgs e)
         {
-            using (var con = new SqliteConnection(_connString))
+            var result = MessageBox.Show("⚠ Are you sure you want to clear all data?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
             {
-                con.Open();
-                string sql = "DROP TABLE readings; ";
-                using (var cmd = new SqliteCommand(sql, con))
+                using (var con = new SqliteConnection(_connString))
                 {
-                    cmd.ExecuteNonQuery();
+                    con.Open();
+                    string sql = "DROP TABLE readings;";
+                    using (var cmd = new SqliteCommand(sql, con))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    InitDatabase();
                 }
-                InitDatabase();
+
+                solidGauge1.Value = 0;
+                solidGauge2.Value = 0;
+                dataGridView1.DataSource = null;
+                dataGridView1.Rows.Clear();
+                dataGridView1.Refresh();
+                dataGridView2.DataSource = null;
+                dataGridView2.Rows.Clear();
+                dataGridView2.Columns.Clear();
+                dataGridView2.Refresh();
+
+                MessageBox.Show("✅ All data cleared from database!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
 
-            solidGauge1.Value = 0;
-            solidGauge2.Value = 0;
-            dataGridView1.DataSource = null;
-            dataGridView1.Rows.Clear();
-            dataGridView1.Refresh();
-            dataGridView2.DataSource = null;
-            dataGridView2.Rows.Clear();
-            dataGridView2.Columns.Clear();
-            dataGridView2.Refresh();
+        private void btnStatistics_Click(object sender, EventArgs e)
+        {
+            StatisticsForm statsForm = new StatisticsForm();
+            statsForm.ShowDialog();
+        }
 
-            MessageBox.Show("✅ All data cleared from database!");
+        private void btnDatabase_Click(object sender, EventArgs e)
+        {
+            DatabaseViewerForm dbForm = new DatabaseViewerForm();
+            dbForm.ShowDialog();
         }
     }
 }

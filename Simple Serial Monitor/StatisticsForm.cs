@@ -1,6 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
 using Microsoft.Data.Sqlite;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,23 +92,49 @@ namespace Simple_Serial_Monitor
             double avg = pot1Values.Average();
             int count = pot1Values.Count;
 
-            lblPOT1Min.Text = $"📉 Min: {min}";
-            lblPOT1Max.Text = $"📈 Max: {max}";
-            lblPOT1Avg.Text = $"📊 Average: {avg:F2}";
-            lblPOT1Count.Text = $"🔢 Total Records: {count}";
+            // تحديث Gauge للـ Min (أزرق)
+            gaugePOT1Min.From = 0;
+            gaugePOT1Min.To = 1023;
+            gaugePOT1Min.Value = min;
+            gaugePOT1Min.Uses360Mode = false;
+            gaugePOT1Min.FromColor = System.Windows.Media.Color.FromRgb(41, 128, 185);
+            gaugePOT1Min.ToColor = System.Windows.Media.Color.FromRgb(52, 152, 219);
 
-            // تحديث Gauge
-            gaugePOT1.From = 0;
-            gaugePOT1.To = 1023;
-            gaugePOT1.Value = avg;
-            gaugePOT1.Uses360Mode = false;
-            gaugePOT1.FromColor = System.Windows.Media.Color.FromRgb(52, 152, 219);
-            gaugePOT1.ToColor = System.Windows.Media.Color.FromRgb(46, 204, 113);
+            // تحديث Gauge للـ Max (أحمر)
+            gaugePOT1Max.From = 0;
+            gaugePOT1Max.To = 1023;
+            gaugePOT1Max.Value = max;
+            gaugePOT1Max.Uses360Mode = false;
+            gaugePOT1Max.FromColor = System.Windows.Media.Color.FromRgb(192, 57, 43);
+            gaugePOT1Max.ToColor = System.Windows.Media.Color.FromRgb(231, 76, 60);
+
+            // تحديث Gauge للـ Average (أخضر)
+            gaugePOT1Avg.From = 0;
+            gaugePOT1Avg.To = 1023;
+            gaugePOT1Avg.Value = Math.Round(avg, 0);
+            gaugePOT1Avg.Uses360Mode = false;
+            gaugePOT1Avg.FromColor = System.Windows.Media.Color.FromRgb(39, 174, 96);
+            gaugePOT1Avg.ToColor = System.Windows.Media.Color.FromRgb(46, 204, 113);
+
+            // تحديث Gauge للـ Count (بنفسجي) - نسبة مئوية من 1000
+            double countPercent = Math.Min(count, 1000);
+            gaugePOT1Count.From = 0;
+            gaugePOT1Count.To = 100;
+            gaugePOT1Count.Value = countPercent;
+            gaugePOT1Count.Uses360Mode = false;
+            gaugePOT1Count.FromColor = System.Windows.Media.Color.FromRgb(142, 68, 173);
+            gaugePOT1Count.ToColor = System.Windows.Media.Color.FromRgb(155, 89, 182);
+            gaugePOT1Count.LabelFormatter = val => count.ToString();
         }
 
         private void UpdatePOT1Charts()
         {
             if (pot1Values.Count == 0) return;
+
+            // 🟢 تنظيف المحاور قبل الإضافة
+            chartPOT1Line.AxisX.Clear();
+            chartPOT1Line.AxisY.Clear();
+            chartPOT1Line.Refresh();
 
             // Line Chart - آخر 50 قراءة
             var recentValues = pot1Values.Skip(Math.Max(0, pot1Values.Count - 50)).ToList();
@@ -180,28 +207,64 @@ namespace Simple_Serial_Monitor
         {
             if (pot2Values.Count == 0) return;
 
+            // 🟢 تنظيف المحاور قبل الإضافة
+            chartPOT2Line.AxisX.Clear();
+            chartPOT2Line.AxisY.Clear();
+            chartPOT2Line.Refresh();
+
             int min = pot2Values.Min();
             int max = pot2Values.Max();
             double avg = pot2Values.Average();
             int count = pot2Values.Count;
 
-            lblPOT2Min.Text = $"📉 Min: {min}";
-            lblPOT2Max.Text = $"📈 Max: {max}";
-            lblPOT2Avg.Text = $"📊 Average: {avg:F2}";
-            lblPOT2Count.Text = $"🔢 Total Records: {count}";
+            lblPOT2MinTitle.Text = $"📉 Min: {min}";
+            lblPOT2MaxTitle.Text = $"📈 Max: {max}";
+            lblPOT2AvgTitle.Text = $"📊 Average: {avg:F2}";
+            lblPOT2CountTitle.Text = $"🔢 Total Records: {count}";
 
-            // تحديث Gauge
-            gaugePOT2.From = 0;
-            gaugePOT2.To = 1023;
-            gaugePOT2.Value = avg;
-            gaugePOT2.Uses360Mode = false;
-            gaugePOT2.FromColor = System.Windows.Media.Color.FromRgb(155, 89, 182);
-            gaugePOT2.ToColor = System.Windows.Media.Color.FromRgb(230, 126, 34);
+            // تحديث Gauge للـ Min (أزرق)
+            gaugePOT2Min.From = 0;
+            gaugePOT2Min.To = 1023;
+            gaugePOT2Min.Value = min;
+            gaugePOT2Min.Uses360Mode = false;
+            gaugePOT2Min.FromColor = System.Windows.Media.Color.FromRgb(41, 128, 185);
+            gaugePOT2Min.ToColor = System.Windows.Media.Color.FromRgb(52, 152, 219);
+
+            // تحديث Gauge للـ Max (أحمر)
+            gaugePOT2Max.From = 0;
+            gaugePOT2Max.To = 1023;
+            gaugePOT2Max.Value = max;
+            gaugePOT2Max.Uses360Mode = false;
+            gaugePOT2Max.FromColor = System.Windows.Media.Color.FromRgb(192, 57, 43);
+            gaugePOT2Max.ToColor = System.Windows.Media.Color.FromRgb(231, 76, 60);
+
+            // تحديث Gauge للـ Average (أخضر)
+            gaugePOT2Avg.From = 0;
+            gaugePOT2Avg.To = 1023;
+            gaugePOT2Avg.Value = Math.Round(avg, 0);
+            gaugePOT2Avg.Uses360Mode = false;
+            gaugePOT2Avg.FromColor = System.Windows.Media.Color.FromRgb(39, 174, 96);
+            gaugePOT2Avg.ToColor = System.Windows.Media.Color.FromRgb(46, 204, 113);
+
+            // تحديث Gauge للـ Count (بنفسجي) - نسبة مئوية من 1000
+            double countPercent = Math.Min(count, 1000);
+            gaugePOT2Count.From = 0;
+            gaugePOT2Count.To = 100;
+            gaugePOT2Count.Value = countPercent;
+            gaugePOT2Count.Uses360Mode = false;
+            gaugePOT2Count.FromColor = System.Windows.Media.Color.FromRgb(142, 68, 173);
+            gaugePOT2Count.ToColor = System.Windows.Media.Color.FromRgb(155, 89, 182);
+            gaugePOT2Count.LabelFormatter = val => count.ToString();
+
         }
 
         private void UpdatePOT2Charts()
         {
             if (pot2Values.Count == 0) return;
+
+            // 🟢 تنظيف المحاور قبل الإضافة
+            chartPOT2Line.AxisX.Clear();
+            chartPOT2Line.AxisY.Clear();
 
             // Line Chart - آخر 50 قراءة
             var recentValues = pot2Values.Skip(Math.Max(0, pot2Values.Count - 50)).ToList();
@@ -273,6 +336,10 @@ namespace Simple_Serial_Monitor
         private void UpdateComparisonChart()
         {
             if (pot1Values.Count == 0 || pot2Values.Count == 0) return;
+
+            chartComparison.AxisX.Clear();
+            chartComparison.AxisY.Clear();
+            chartComparison.Refresh();
 
             // حساب الارتباط (Correlation)
             double correlation = CalculateCorrelation(pot1Values, pot2Values);
