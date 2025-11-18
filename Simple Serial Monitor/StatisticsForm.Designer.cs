@@ -18,6 +18,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnExportExcel = new Button();
             panelLeft = new Panel();
             panelLeftBlue = new Panel();
             panelLeftSky = new Panel();
@@ -69,6 +70,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(42, 65, 142);
+            panel1.Controls.Add(btnExportExcel);
             panel1.Controls.Add(panelLeft);
             panel1.Controls.Add(lblTitle);
             panel1.Controls.Add(btnRefresh);
@@ -79,6 +81,21 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1371, 80);
             panel1.TabIndex = 0;
+            // 
+            // btnExportExcel
+            // 
+            btnExportExcel.BackColor = Color.FromArgb(52, 152, 219);
+            btnExportExcel.FlatStyle = FlatStyle.Flat;
+            btnExportExcel.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnExportExcel.ForeColor = Color.White;
+            btnExportExcel.Location = new Point(954, 16);
+            btnExportExcel.Margin = new Padding(3, 4, 3, 4);
+            btnExportExcel.Name = "btnExportExcel";
+            btnExportExcel.Size = new Size(126, 47);
+            btnExportExcel.TabIndex = 3;
+            btnExportExcel.Text = "📥 Export";
+            btnExportExcel.UseVisualStyleBackColor = false;
+            btnExportExcel.Click += btnExportExcel_Click;
             // 
             // panelLeft
             // 
@@ -150,7 +167,7 @@
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnClose.ForeColor = Color.White;
-            btnClose.Location = new Point(1223, 16);
+            btnClose.Location = new Point(1218, 16);
             btnClose.Margin = new Padding(3, 4, 3, 4);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(126, 47);
@@ -546,5 +563,6 @@
         private Panel panelLeftBlue;
         private Panel panelLeftSky;
         private Panel panelLeftGreen;
+        private Button btnExportExcel;
     }
 }

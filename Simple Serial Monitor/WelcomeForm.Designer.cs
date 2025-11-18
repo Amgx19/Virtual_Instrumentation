@@ -22,6 +22,7 @@
             timerFadeIn = new System.Windows.Forms.Timer(components);
             timerFadeOut = new System.Windows.Forms.Timer(components);
             panelMain = new Panel();
+            pictureBox1 = new PictureBox();
             panelContent = new Panel();
             lblProjectTitle = new Label();
             lblMainTitle = new Label();
@@ -39,13 +40,12 @@
             panelSkyBlue = new Panel();
             panelGreen = new Panel();
             panelTopDecoration = new Panel();
-            pictureBox1 = new PictureBox();
             panelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelContent.SuspendLayout();
             panelProgress.SuspendLayout();
             panelStudents.SuspendLayout();
             panelLeftDecoration.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // timer1
@@ -76,6 +76,16 @@
             panelMain.Name = "panelMain";
             panelMain.Size = new Size(1000, 600);
             panelMain.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.شعار_الجامعة_هندسة;
+            pictureBox1.Location = new Point(156, 27);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(744, 104);
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox1.TabIndex = 3;
+            pictureBox1.TabStop = false;
             // 
             // panelContent
             // 
@@ -203,7 +213,7 @@
             lblStudent3.Name = "lblStudent3";
             lblStudent3.Size = new Size(250, 30);
             lblStudent3.TabIndex = 2;
-            lblStudent3.Text = "Othman Al-Amine 443047358";
+            lblStudent3.Text = "Othman Al-Amein 443047358";
             lblStudent3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panelLeftDecoration
@@ -253,17 +263,7 @@
             panelTopDecoration.Size = new Size(1000, 8);
             panelTopDecoration.TabIndex = 2;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources.شعار_الجامعة_هندسة;
-            pictureBox1.Location = new Point(156, 27);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(744, 104);
-            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox1.TabIndex = 3;
-            pictureBox1.TabStop = false;
-            // 
-            // Welcome
+            // WelcomeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -271,17 +271,17 @@
             ClientSize = new Size(1000, 600);
             Controls.Add(panelMain);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "Welcome";
+            Name = "WelcomeForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Welcome";
             Load += Welcome_Load;
             panelMain.ResumeLayout(false);
             panelMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelContent.ResumeLayout(false);
             panelProgress.ResumeLayout(false);
             panelStudents.ResumeLayout(false);
             panelLeftDecoration.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
