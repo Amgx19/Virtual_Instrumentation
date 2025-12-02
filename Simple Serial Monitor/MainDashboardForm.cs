@@ -5,7 +5,7 @@ using System;
 using System.IO.Ports;
 using System.Windows.Forms;
 
-namespace Simple_Serial_Monitor
+namespace Virtual_Instrumentation
 {
     public partial class MainDashboardForm : Form
     {
@@ -16,7 +16,10 @@ namespace Simple_Serial_Monitor
         ChartValues<int> chartValues1 = new ChartValues<int>();
         ChartValues<int> chartValues2 = new ChartValues<int>();
 
-        private string _connString = "Data Source=data.db";
+        string _connString = DatabaseInitializer.ConnectionString;
+
+        //timer to track the ports
+        private string[] lastPorts = Array.Empty<string>();
 
         // عدادات للتحكم بسرعة الإدخال
         private int dbCounter = 0;
@@ -25,26 +28,9 @@ namespace Simple_Serial_Monitor
         public MainDashboardForm()
         {
             InitializeComponent();
-            InitDatabase();
         }
 
-        private void InitDatabase()
-        {
-            using var conn = new SqliteConnection(_connString);
-            conn.Open();
-            var cmd = conn.CreateCommand();
-            cmd.CommandText = @"
-                CREATE TABLE IF NOT EXISTS readings(
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    pot1 INTEGER,
-                    pot2 INTEGER,
-                    raw TEXT,
-                    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-                );";
-            cmd.ExecuteNonQuery();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainDashboardForm_Load(object sender, EventArgs e)
         {
             comboBox1.Items.Clear();
             foreach (string port in SerialPort.GetPortNames())
@@ -61,6 +47,13 @@ namespace Simple_Serial_Monitor
             uiTimer.Tick += UiTimer_Tick;
             uiTimer.Start();
 
+
+            var portTimer = new System.Windows.Forms.Timer();
+            portTimer.Interval = 1000; // كل ثانية يشوف المنافذ
+            portTimer.Tick += PortTimer_Tick;
+            portTimer.Start();
+
+
             solidGauge1.Value = 0;
             solidGauge1.To = 1023;
             solidGauge1.FromColor = System.Windows.Media.Color.FromRgb(42, 65, 142);
@@ -76,6 +69,24 @@ namespace Simple_Serial_Monitor
 
             textBox2.Text = "POT1: 0 | POT2: 0";
         }
+
+        private void PortTimer_Tick(object? sender, EventArgs e)
+        {
+            var ports = SerialPort.GetPortNames();
+
+            if (!lastPorts.SequenceEqual(ports))
+            {
+                lastPorts = ports;
+
+                comboBox1.Items.Clear();
+                comboBox1.Items.AddRange(ports);
+
+                // اختر أول واحد إذا القائمة غير فاضية
+                if (ports.Length > 0)
+                    comboBox1.SelectedIndex = 0;
+            }
+        }
+
 
         private void open_btn(object sender, EventArgs e)
         {
@@ -103,7 +114,7 @@ namespace Simple_Serial_Monitor
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             if (SimulationMode)
             {
@@ -269,6 +280,29 @@ namespace Simple_Serial_Monitor
 
         private void btnSimulation_Click(object sender, EventArgs e)
         {
+            if (!SimulationMode) // معناها راح نفعّل المحاكاة الآن
+            {
+                var result = MessageBox.Show(
+                    "⚠ WARNING!\n\nEnabling Simulation Mode may cause mixed or duplicated readings.\n" +
+                    "Ensure all real data sources are disconnected.\n\nDo you want to continue?",
+                    "Enable Simulation Mode",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (result == DialogResult.No)
+                    return;
+            }
+            if (serialPort.IsOpen)
+            {
+                MessageBox.Show(
+                    "⚠ Cannot enable simulation while a COM port is open.\n\nPlease close the port first.",
+                    "Simulation Blocked",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
             SimulationMode = !SimulationMode;
             if (SimulationMode)
             {
@@ -293,12 +327,16 @@ namespace Simple_Serial_Monitor
                 using (var con = new SqliteConnection(_connString))
                 {
                     con.Open();
-                    string sql = "DROP TABLE readings;";
+                    string sql = "DELETE FROM readings;" +
+                        "VACUUM;";
                     using (var cmd = new SqliteCommand(sql, con))
                     {
                         cmd.ExecuteNonQuery();
                     }
-                    InitDatabase();
+                    // 2) إعادة تصفير عداد الـ id
+                    string sqlResetSeq = "DELETE FROM sqlite_sequence WHERE name='readings';";
+                    using (var cmd = new SqliteCommand(sqlResetSeq, con))
+                        cmd.ExecuteNonQuery();
                 }
 
                 solidGauge1.Value = 0;
@@ -315,7 +353,7 @@ namespace Simple_Serial_Monitor
             }
         }
 
-        private void btnStatistics_Click(object sender, EventArgs e)
+        private void BtnStatistics_Click(object sender, EventArgs e)
         {
             StatisticsForm statsForm = new StatisticsForm();
             statsForm.ShowDialog();
@@ -325,6 +363,12 @@ namespace Simple_Serial_Monitor
         {
             DatabaseViewerForm dbForm = new DatabaseViewerForm();
             dbForm.ShowDialog();
+        }
+
+        private void MainDashboardForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+                Application.Exit();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Simple_Serial_Monitor
+﻿namespace Virtual_Instrumentation
 {
     partial class MainDashboardForm
     {
@@ -19,13 +19,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainDashboardForm));
             panelTop = new Panel();
+            btnDatabase = new Button();
+            btnStatistics = new Button();
             panelLeft = new Panel();
             panelLeftBlue = new Panel();
             panelLeftSky = new Panel();
             panelLeftGreen = new Panel();
-            btnDatabase = new Button();
             lblTitle = new Label();
-            btnStatistics = new Button();
             groupBoxPort = new GroupBox();
             label1 = new Label();
             comboBox1 = new ComboBox();
@@ -58,15 +58,45 @@
             // panelTop
             // 
             panelTop.BackColor = Color.FromArgb(30, 58, 138);
-            panelTop.Controls.Add(panelLeft);
             panelTop.Controls.Add(btnDatabase);
-            panelTop.Controls.Add(lblTitle);
             panelTop.Controls.Add(btnStatistics);
+            panelTop.Controls.Add(panelLeft);
+            panelTop.Controls.Add(lblTitle);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(1200, 70);
             panelTop.TabIndex = 0;
+            // 
+            // btnDatabase
+            // 
+            btnDatabase.BackColor = Color.FromArgb(16, 185, 129);
+            btnDatabase.FlatStyle = FlatStyle.Flat;
+            btnDatabase.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnDatabase.ForeColor = Color.White;
+            btnDatabase.Location = new Point(772, 11);
+            btnDatabase.Margin = new Padding(3, 4, 3, 4);
+            btnDatabase.Name = "btnDatabase";
+            btnDatabase.Size = new Size(185, 47);
+            btnDatabase.TabIndex = 6;
+            btnDatabase.Text = "🗄 DB Management";
+            btnDatabase.UseVisualStyleBackColor = false;
+            btnDatabase.Click += btnDatabase_Click;
+            // 
+            // btnStatistics
+            // 
+            btnStatistics.BackColor = Color.FromArgb(16, 185, 129);
+            btnStatistics.FlatStyle = FlatStyle.Flat;
+            btnStatistics.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnStatistics.ForeColor = Color.White;
+            btnStatistics.Location = new Point(975, 12);
+            btnStatistics.Margin = new Padding(3, 4, 3, 4);
+            btnStatistics.Name = "btnStatistics";
+            btnStatistics.Size = new Size(185, 47);
+            btnStatistics.TabIndex = 5;
+            btnStatistics.Text = "📊 Statistics";
+            btnStatistics.UseVisualStyleBackColor = false;
+            btnStatistics.Click += BtnStatistics_Click;
             // 
             // panelLeft
             // 
@@ -106,21 +136,6 @@
             panelLeftGreen.Size = new Size(5, 70);
             panelLeftGreen.TabIndex = 2;
             // 
-            // btnDatabase
-            // 
-            btnDatabase.BackColor = Color.FromArgb(149, 194, 65);
-            btnDatabase.FlatAppearance.BorderSize = 0;
-            btnDatabase.FlatStyle = FlatStyle.Flat;
-            btnDatabase.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnDatabase.ForeColor = Color.White;
-            btnDatabase.Location = new Point(854, 15);
-            btnDatabase.Name = "btnDatabase";
-            btnDatabase.Size = new Size(160, 40);
-            btnDatabase.TabIndex = 2;
-            btnDatabase.Text = "🗄 DB Management";
-            btnDatabase.UseVisualStyleBackColor = false;
-            btnDatabase.Click += btnDatabase_Click;
-            // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
@@ -131,21 +146,6 @@
             lblTitle.Size = new Size(284, 46);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Main Dashboard";
-            // 
-            // btnStatistics
-            // 
-            btnStatistics.BackColor = Color.FromArgb(149, 194, 65);
-            btnStatistics.FlatAppearance.BorderSize = 0;
-            btnStatistics.FlatStyle = FlatStyle.Flat;
-            btnStatistics.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnStatistics.ForeColor = Color.White;
-            btnStatistics.Location = new Point(1020, 15);
-            btnStatistics.Name = "btnStatistics";
-            btnStatistics.Size = new Size(160, 40);
-            btnStatistics.TabIndex = 1;
-            btnStatistics.Text = "📊 Statistics";
-            btnStatistics.UseVisualStyleBackColor = false;
-            btnStatistics.Click += btnStatistics_Click;
             // 
             // groupBoxPort
             // 
@@ -209,7 +209,7 @@
             btnClose.TabIndex = 3;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = false;
-            btnClose.Click += button2_Click;
+            btnClose.Click += btnClose_Click;
             // 
             // groupBoxData
             // 
@@ -374,7 +374,8 @@
             Name = "MainDashboardForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Main Dashboard - Virtual Instrumentation";
-            Load += Form1_Load;
+            FormClosing += MainDashboardForm_FormClosing;
+            Load += MainDashboardForm_Load;
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
             panelLeft.ResumeLayout(false);
@@ -394,7 +395,6 @@
 
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btnStatistics;
         private System.Windows.Forms.GroupBox groupBoxPort;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -413,10 +413,11 @@
         private LiveCharts.WinForms.SolidGauge solidGauge2;
         private LiveCharts.WinForms.CartesianChart cartesianChart2;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private Button btnDatabase;
         private Panel panelLeft;
         private Panel panelLeftBlue;
         private Panel panelLeftSky;
         private Panel panelLeftGreen;
+        private Button btnStatistics;
+        private Button btnDatabase;
     }
 }

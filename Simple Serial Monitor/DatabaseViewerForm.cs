@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Simple_Serial_Monitor
+namespace Virtual_Instrumentation
 {
     public partial class DatabaseViewerForm : Form
     {
-        private string _connString = "Data Source=data.db";
+        string _connString = DatabaseInitializer.ConnectionString;
         private string _currentTable = "";
 
         public DatabaseViewerForm()
@@ -93,7 +93,9 @@ namespace Simple_Serial_Monitor
         private void comboBoxTables_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxTables.SelectedItem != null)
+#pragma warning disable CS8604 // Possible null reference argument.
                 LoadTableData(comboBoxTables.SelectedItem.ToString());
+#pragma warning restore CS8604 // Possible null reference argument.
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -101,7 +103,9 @@ namespace Simple_Serial_Monitor
             LoadTableNames();
 
             if (comboBoxTables.SelectedItem != null)
+#pragma warning disable CS8604 // Possible null reference argument.
                 LoadTableData(comboBoxTables.SelectedItem.ToString());
+#pragma warning restore CS8604 // Possible null reference argument.
 
             MessageBox.Show("✅ Tables refreshed successfully!");
         }
@@ -309,7 +313,7 @@ namespace Simple_Serial_Monitor
             }
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void btnClose_Click_1(object sender, EventArgs e)
         {
             Close();
         }

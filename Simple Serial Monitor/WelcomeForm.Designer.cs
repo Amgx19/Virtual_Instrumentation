@@ -1,4 +1,4 @@
-﻿namespace Simple_Serial_Monitor
+﻿namespace Virtual_Instrumentation
 {
     partial class WelcomeForm
     {
@@ -18,6 +18,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomeForm));
             timer1 = new System.Windows.Forms.Timer(components);
             timerFadeIn = new System.Windows.Forms.Timer(components);
             timerFadeOut = new System.Windows.Forms.Timer(components);
@@ -271,6 +272,7 @@
             ClientSize = new Size(1000, 600);
             Controls.Add(panelMain);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "WelcomeForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Welcome";

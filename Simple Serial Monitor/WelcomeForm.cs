@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
+using Microsoft.Data.Sqlite;
 
-namespace Simple_Serial_Monitor
+
+namespace Virtual_Instrumentation
 {
     public partial class WelcomeForm : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace Simple_Serial_Monitor
+﻿namespace Virtual_Instrumentation
 {
     partial class StatisticsForm
     {
@@ -17,6 +17,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StatisticsForm));
             panel1 = new Panel();
             btnExportExcel = new Button();
             panelLeft = new Panel();
@@ -148,7 +149,7 @@
             // 
             // btnRefresh
             // 
-            btnRefresh.BackColor = Color.FromArgb(46, 204, 113);
+            btnRefresh.BackColor = Color.FromArgb(16, 185, 129);
             btnRefresh.FlatStyle = FlatStyle.Flat;
             btnRefresh.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnRefresh.ForeColor = Color.White;
@@ -303,7 +304,7 @@
             chartPOT1Line.Location = new Point(23, 293);
             chartPOT1Line.Margin = new Padding(3, 4, 3, 4);
             chartPOT1Line.Name = "chartPOT1Line";
-            chartPOT1Line.Size = new Size(800, 333);
+            chartPOT1Line.Size = new Size(800, 500);
             chartPOT1Line.TabIndex = 1;
             // 
             // chartPOT1Pie
@@ -311,7 +312,7 @@
             chartPOT1Pie.Location = new Point(829, 293);
             chartPOT1Pie.Margin = new Padding(3, 4, 3, 4);
             chartPOT1Pie.Name = "chartPOT1Pie";
-            chartPOT1Pie.Size = new Size(514, 333);
+            chartPOT1Pie.Size = new Size(514, 500);
             chartPOT1Pie.TabIndex = 2;
             // 
             // tabPOT2
@@ -427,7 +428,7 @@
             chartPOT2Line.Location = new Point(23, 293);
             chartPOT2Line.Margin = new Padding(3, 4, 3, 4);
             chartPOT2Line.Name = "chartPOT2Line";
-            chartPOT2Line.Size = new Size(800, 333);
+            chartPOT2Line.Size = new Size(800, 500);
             chartPOT2Line.TabIndex = 1;
             // 
             // chartPOT2Pie
@@ -435,7 +436,7 @@
             chartPOT2Pie.Location = new Point(829, 293);
             chartPOT2Pie.Margin = new Padding(3, 4, 3, 4);
             chartPOT2Pie.Name = "chartPOT2Pie";
-            chartPOT2Pie.Size = new Size(514, 333);
+            chartPOT2Pie.Size = new Size(514, 500);
             chartPOT2Pie.TabIndex = 2;
             // 
             // tabComparison
@@ -500,6 +501,7 @@
             Controls.Add(tabControl1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "StatisticsForm";

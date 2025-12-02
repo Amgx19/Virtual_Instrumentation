@@ -12,11 +12,11 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using MediaBrushes = System.Windows.Media.Brushes;
 
-namespace Simple_Serial_Monitor
+namespace Virtual_Instrumentation
 {
     public partial class StatisticsForm : Form
     {
-        private string _connString = "Data Source=data.db";
+        string _connString = DatabaseInitializer.ConnectionString;
         private List<int> pot1Values = new List<int>();
         private List<int> pot2Values = new List<int>();
 
@@ -422,7 +422,6 @@ namespace Simple_Serial_Monitor
             return sumXY / Math.Sqrt(sumX2 * sumY2);
         }
 
-        [Obsolete]
         private void btnExportExcel_Click(object sender, EventArgs e)
         {
             try

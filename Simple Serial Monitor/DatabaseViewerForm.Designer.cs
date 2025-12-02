@@ -1,4 +1,4 @@
-﻿namespace Simple_Serial_Monitor
+﻿namespace Virtual_Instrumentation
 {
     partial class DatabaseViewerForm
     {
@@ -17,9 +17,14 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DatabaseViewerForm));
             panelTop = new Panel();
-            lblTitle = new Label();
             btnClose = new Button();
+            panel1 = new Panel();
+            panelLeftBlue = new Panel();
+            panelLeftSky = new Panel();
+            panelLeftGreen = new Panel();
+            lblTitle = new Label();
             panelLeft = new Panel();
             groupBoxTables = new GroupBox();
             lblTableName = new Label();
@@ -38,30 +43,79 @@
             txtCustomQuery = new TextBox();
             btnExecuteQuery = new Button();
             lblQueryHint = new Label();
-            panel1 = new Panel();
-            panelLeftBlue = new Panel();
-            panelLeftSky = new Panel();
-            panelLeftGreen = new Panel();
             panelTop.SuspendLayout();
+            panel1.SuspendLayout();
             groupBoxTables.SuspendLayout();
             groupBoxData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewMain).BeginInit();
             panelActions.SuspendLayout();
             groupBoxQuery.SuspendLayout();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panelTop
             // 
             panelTop.BackColor = Color.FromArgb(30, 58, 138);
+            panelTop.Controls.Add(btnClose);
             panelTop.Controls.Add(panel1);
             panelTop.Controls.Add(lblTitle);
-            panelTop.Controls.Add(btnClose);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(1300, 70);
             panelTop.TabIndex = 0;
+            // 
+            // btnClose
+            // 
+            btnClose.BackColor = Color.FromArgb(231, 76, 60);
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnClose.ForeColor = Color.White;
+            btnClose.Location = new Point(1134, 12);
+            btnClose.Margin = new Padding(3, 4, 3, 4);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(126, 47);
+            btnClose.TabIndex = 5;
+            btnClose.Text = "✖ Close";
+            btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click_1;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(panelLeftBlue);
+            panel1.Controls.Add(panelLeftSky);
+            panel1.Controls.Add(panelLeftGreen);
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(15, 70);
+            panel1.TabIndex = 4;
+            // 
+            // panelLeftBlue
+            // 
+            panelLeftBlue.BackColor = Color.FromArgb(30, 58, 138);
+            panelLeftBlue.Dock = DockStyle.Left;
+            panelLeftBlue.Location = new Point(10, 0);
+            panelLeftBlue.Name = "panelLeftBlue";
+            panelLeftBlue.Size = new Size(5, 70);
+            panelLeftBlue.TabIndex = 0;
+            // 
+            // panelLeftSky
+            // 
+            panelLeftSky.BackColor = Color.FromArgb(59, 130, 246);
+            panelLeftSky.Dock = DockStyle.Left;
+            panelLeftSky.Location = new Point(5, 0);
+            panelLeftSky.Name = "panelLeftSky";
+            panelLeftSky.Size = new Size(5, 70);
+            panelLeftSky.TabIndex = 1;
+            // 
+            // panelLeftGreen
+            // 
+            panelLeftGreen.BackColor = Color.FromArgb(16, 185, 129);
+            panelLeftGreen.Dock = DockStyle.Left;
+            panelLeftGreen.Location = new Point(0, 0);
+            panelLeftGreen.Name = "panelLeftGreen";
+            panelLeftGreen.Size = new Size(5, 70);
+            panelLeftGreen.TabIndex = 2;
             // 
             // lblTitle
             // 
@@ -73,21 +127,6 @@
             lblTitle.Size = new Size(444, 46);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "🗄 Database Management";
-            // 
-            // btnClose
-            // 
-            btnClose.BackColor = Color.FromArgb(239, 68, 68);
-            btnClose.FlatAppearance.BorderSize = 0;
-            btnClose.FlatStyle = FlatStyle.Flat;
-            btnClose.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnClose.ForeColor = Color.White;
-            btnClose.Location = new Point(1130, 15);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(150, 40);
-            btnClose.TabIndex = 1;
-            btnClose.Text = "✖ Close";
-            btnClose.UseVisualStyleBackColor = false;
-            btnClose.Click += btnClose_Click;
             // 
             // panelLeft
             // 
@@ -312,44 +351,6 @@
             lblQueryHint.TabIndex = 2;
             lblQueryHint.Text = "⚠ Use SELECT queries only. Be careful with filters!";
             // 
-            // panel1
-            // 
-            panel1.Controls.Add(panelLeftBlue);
-            panel1.Controls.Add(panelLeftSky);
-            panel1.Controls.Add(panelLeftGreen);
-            panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(15, 70);
-            panel1.TabIndex = 4;
-            // 
-            // panelLeftBlue
-            // 
-            panelLeftBlue.BackColor = Color.FromArgb(30, 58, 138);
-            panelLeftBlue.Dock = DockStyle.Left;
-            panelLeftBlue.Location = new Point(10, 0);
-            panelLeftBlue.Name = "panelLeftBlue";
-            panelLeftBlue.Size = new Size(5, 70);
-            panelLeftBlue.TabIndex = 0;
-            // 
-            // panelLeftSky
-            // 
-            panelLeftSky.BackColor = Color.FromArgb(59, 130, 246);
-            panelLeftSky.Dock = DockStyle.Left;
-            panelLeftSky.Location = new Point(5, 0);
-            panelLeftSky.Name = "panelLeftSky";
-            panelLeftSky.Size = new Size(5, 70);
-            panelLeftSky.TabIndex = 1;
-            // 
-            // panelLeftGreen
-            // 
-            panelLeftGreen.BackColor = Color.FromArgb(16, 185, 129);
-            panelLeftGreen.Dock = DockStyle.Left;
-            panelLeftGreen.Location = new Point(0, 0);
-            panelLeftGreen.Name = "panelLeftGreen";
-            panelLeftGreen.Size = new Size(5, 70);
-            panelLeftGreen.TabIndex = 2;
-            // 
             // DatabaseViewerForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -363,6 +364,7 @@
             Controls.Add(panelLeft);
             Controls.Add(panelTop);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "DatabaseViewerForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -370,6 +372,7 @@
             Load += DatabaseViewerForm_Load;
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
+            panel1.ResumeLayout(false);
             groupBoxTables.ResumeLayout(false);
             groupBoxTables.PerformLayout();
             groupBoxData.ResumeLayout(false);
@@ -378,7 +381,6 @@
             panelActions.PerformLayout();
             groupBoxQuery.ResumeLayout(false);
             groupBoxQuery.PerformLayout();
-            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -386,7 +388,6 @@
 
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.GroupBox groupBoxTables;
         private System.Windows.Forms.Label lblTableName;
@@ -409,5 +410,6 @@
         private Panel panelLeftBlue;
         private Panel panelLeftSky;
         private Panel panelLeftGreen;
+        private Button btnClose;
     }
 }
